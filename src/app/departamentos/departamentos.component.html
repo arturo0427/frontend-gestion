@@ -1,0 +1,50 @@
+<section class="flex flex-col items-center mt-5 border-2 p-3 rounded">
+  <h2 class="text-center text-lg">Departamentos</h2>
+  <div class="mt-4">
+    <form
+      class="flex flex-col gap-4"
+      [formGroup]="dataDepartamentos"
+      (ngSubmit)="createDepartamento()"
+    >
+      <input
+        class="rounded-md h-[35px] border-b-2 p-2"
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Nombre del departamento"
+        formControlName="name"
+      />
+      <input
+        class="rounded-md h-[35px] border-b-2 p-2"
+        type="text"
+        name="description"
+        id="description"
+        placeholder="Descripción"
+        formControlName="description"
+      />
+      <button
+        class="hover:bg-indigo-400 transition-all cursor-pointer bg-indigo-500 rounded-md text-white h-[35px]"
+        type="submit"
+      >
+        Agregar departamento
+      </button>
+    </form>
+  </div>
+  <hr />
+  <h3 class="font-bold m-3">Registro de departamentos</h3>
+  <div class="flex items-start">
+    <ul class="flex flex-col gap-2">
+      @for (departamento of departamentos; track departamento._id) {
+      <div class="flex flex-row gap-2">
+        <li>{{ departamento.name }}</li>
+        <button
+          (click)="deleteDepartamento(departamento._id)"
+          class="hover:bg-red-500 transition-all bg-red-600 text-white rounded-md w-[85px]"
+        >
+          Eliminar
+        </button>
+      </div>
+      }
+    </ul>
+  </div>
+</section>

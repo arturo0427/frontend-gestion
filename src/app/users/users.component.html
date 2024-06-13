@@ -1,0 +1,67 @@
+<section class="flex flex-col items-center mt-5 border-2 p-3 rounded">
+  <h2 class="text-center text-lg">Usuarios</h2>
+  <div class="m-4">
+    <form
+      class="flex flex-col gap-4"
+      [formGroup]="dataUsers"
+      (ngSubmit)="createUser()"
+    >
+      <input
+        class="rounded-md h-[35px] border-b-2 p-2"
+        type="text"
+        id="name"
+        formControlName="name"
+        placeholder="Nombre"
+      />
+      <input
+        class="rounded-md h-[35px] border-b-2 p-2"
+        type="text"
+        id="puesto"
+        formControlName="puesto"
+        placeholder="Puesto"
+      />
+
+      <select
+        class="rounded-md h-[35px] border-b-2 p-2"
+        name="departamento"
+        id="departamento"
+        formControlName="departamento"
+      >
+        <option disabled>-- Selecciona un departamento --</option>
+        @for (departamento of depar; track departamento._id) {
+        <option [value]="departamento._id">{{ departamento.name }}</option>
+        }
+      </select>
+      <input
+        class="rounded-md h-[35px] border-b-2 p-2"
+        type="date"
+        id="date"
+        formControlName="date"
+        placeholder="Fecha contratación"
+      />
+      <button
+        class="hover:bg-indigo-400 transition-all cursor-pointer bg-indigo-500 rounded-md text-white h-[35px]"
+        type="submit"
+      >
+        Agregar usuario
+      </button>
+    </form>
+  </div>
+  <hr />
+  <h3 class="font-bold m-3">Registro de usuarios</h3>
+  <div class="flex flex-col items-start">
+    <ul class="flex flex-col gap-2">
+      @for (user of users; track user._id) {
+      <div class="flex flex-row gap-2">
+        <li>{{ user.name }} - {{ user.puesto }}</li>
+        <button
+          (click)="deleteUser(user._id)"
+          class="hover:bg-red-500 transition-all bg-red-600 text-white rounded-md w-[85px]"
+        >
+          Eliminar
+        </button>
+      </div>
+      }
+    </ul>
+  </div>
+</section>
